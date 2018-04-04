@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "module": "commonjs",
+        "outDir": "./dist",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "typeRoots": [
+            "node_modules/@types",
+            "src/types"
+        ],
+        "lib": ["es6", "es2015", "es2016", "es2017", "esnext.array", "es2016.array.include"]
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}

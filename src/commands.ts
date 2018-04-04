@@ -74,7 +74,7 @@ const approleResponse = {
   },
 };
 
-module.exports = {
+export default {
   status: {
     method: 'GET',
     path: '/sys/seal-status',

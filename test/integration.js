@@ -5,9 +5,9 @@ const should = chai.Should;
 should();
 chai.use(dirtyChai);
 
-const vault = require('./../src/index.js')();
+const vault = require('./../src/index.ts').default();
 // use json schema in commands.js validate response
-const commands = require('./../src/commands.js');
+const commands = require('./../src/commands.ts');
 const tv4 = require('tv4');
 const assert = require('assert');
 

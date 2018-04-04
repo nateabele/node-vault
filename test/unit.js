@@ -8,7 +8,9 @@ should();
 chai.use(dirtyChai);
 chai.use(sinonChai);
 
-const index = require('./../src/index.js');
+const index = require('./../src/index.ts').default;
+const commands = require('./../src/commands.ts').default;
+
 
 const error = new Error('should not be called');
 
@@ -370,7 +372,7 @@ describe('node-vault', () => {
 
       it('should generate a function with name as defined in config', () => {
         const name = 'myGeneratedFunction';
-        vault.generateFunction(name, config);
+        vault.generateFunction(commands)(name, config);
         vault.should.have.property(name);
         const fn = vault[name];
         fn.should.be.a('function');
@@ -379,7 +381,7 @@ describe('node-vault', () => {
       describe('generated function', () => {
         it('should return a promise', done => {
           const name = 'myGeneratedFunction';
-          vault.generateFunction(name, config);
+          vault.generateFunction(commands)(name, config);
           const fn = vault[name];
           const promise = fn();
           request.calledOnce.should.be.ok();
@@ -391,7 +393,7 @@ describe('node-vault', () => {
 
         it('should handle config with schema property', done => {
           const name = 'myGeneratedFunction';
-          vault.generateFunction(name, configWithSchema);
+          vault.generateFunction(commands)(name, configWithSchema);
           const fn = vault[name];
           const promise = fn({ testProperty: 3 });
           promise.then(done).catch(done);
@@ -399,7 +401,7 @@ describe('node-vault', () => {
 
         it('should handle invalid arguments via schema property', done => {
           const name = 'myGeneratedFunction';
-          vault.generateFunction(name, configWithSchema);
+          vault.generateFunction(commands)(name, configWithSchema);
           const fn = vault[name];
           const promise = fn({ testProperty: 'wrong data type here' });
           promise.catch(err => {
@@ -410,7 +412,7 @@ describe('node-vault', () => {
 
         it('should handle schema with query property', done => {
           const name = 'myGeneratedFunction';
-          vault.generateFunction(name, configWithQuerySchema);
+          vault.generateFunction(commands)(name, configWithQuerySchema);
           const fn = vault[name];
           const promise = fn({ testParam1: 3, testParam2: 'hello' });
           const options = {

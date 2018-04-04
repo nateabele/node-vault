@@ -1,5 +1,5 @@
 const fs = require('fs');
-const commands = require('../src/commands');
+const commands = require('../src/commands').default;
 
 const result = Object.keys(commands).map(name => {
   const command = commands[name];
